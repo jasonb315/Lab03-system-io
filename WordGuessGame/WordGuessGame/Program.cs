@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace WordGuessGame
 {
@@ -23,14 +24,29 @@ namespace WordGuessGame
         }
         static void Home()
         {
+            Console.WriteLine("315: HOME");
             // intro screen
             // user interface/selection
                 // CRUD words to file
         }
         static void FileSetup()
         {
-            // check for file
-            // if no file, create
+            Console.WriteLine("315: FILE SETUP");
+            string path = "../../../MyTest.txt";
+
+            // no file? create and populate with default bank:
+            string[] defaultBank = new string[3] { "cocortical", "scrumptious", "bombastic" };
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    for (int i = 0; i < defaultBank.Length; i++)
+                    {
+                        sw.WriteLine(defaultBank[i]);
+                    }
+                }
+            }
+
             // if file, load
         }
         static void Play()
