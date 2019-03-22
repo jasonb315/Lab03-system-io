@@ -32,38 +32,44 @@ namespace WordGuessGame
             Console.WriteLine("4] REMOVE WORD");
             Console.WriteLine("5] EXIT");
 
-            while (true)
+            int userSelect;
+
+            while(true)
             {
                 string inputStr = Console.ReadLine();
-                int inputVal;
-                inputVal = Convert.ToInt32(inputStr);
-                if(inputVal == 1)
+                userSelect = Convert.ToInt32(inputStr);
+                if (userSelect >= 1 && userSelect <= 5)
                 {
-                    Play();
-                }
-                else if (inputVal == 2)
-                {
-                    ViewWords();
-                }
-                else if (inputVal == 3)
-                {
-                    AddWord();
-                }
-                else if (inputVal == 4)
-                {
-                    RemoveWord();
-                }
-                else if (inputVal == 5)
-                {
-                    Console.WriteLine("Toodle-oo!");
-                    Environment.Exit(0);
+                    break;
                 }
                 else
                 {
                     Console.WriteLine("Excuse me what?");
                 }
-
             }
+
+            if(userSelect == 1)
+            {
+                Play();
+            }
+            else if (userSelect == 2)
+            {
+                ViewWords();
+            }
+            else if (userSelect == 3)
+            {
+                AddWord();
+            }
+            else if (userSelect == 4)
+            {
+                RemoveWord();
+            }
+            else if (userSelect == 5)
+            {
+                Console.WriteLine("Toodle-oo!");
+                Environment.Exit(0);
+            }
+
             //for (int i = 0; i < wordBank.Length; i++)
             //{
             //    Console.WriteLine(wordBank[i]);
