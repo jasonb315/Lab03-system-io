@@ -96,12 +96,14 @@ namespace WordGuessGame
 
         static void Play(string[]wordBank)
         {
-            // select random from wordBank
-            // while true loop guessing
-            // track guesses
+            Random rnd = new Random();
+            int selectVal = rnd.Next(0, wordBank.Length -1);
+            Console.WriteLine("selectVal: " + selectVal);
+            string secretWord = wordBank[selectVal];
+            Console.WriteLine(secretWord);
 
-            // completion event!!
-            // play again ? play : home/exit
+
+            Home(wordBank);
 
         }
         static void ViewWords()
