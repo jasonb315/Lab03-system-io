@@ -125,8 +125,10 @@ namespace WordGuessGame
         {
             while (true)
             {
-                Console.Write("Enter word ('done' to go back): ");
+                Console.Write("<<<\"done\"] Enter word to add: ");
+
                 string newWord = Console.ReadLine();
+
                 string path = "../../../wordBank.txt";
                 
                 // exit AddWord
@@ -144,6 +146,7 @@ namespace WordGuessGame
                     }
 
                     // and print the list with the new word
+                    Console.WriteLine("UPDATED WORD BANK:");
                     using (StreamReader sr = File.OpenText(path))
                     {
                         string s;
@@ -161,10 +164,63 @@ namespace WordGuessGame
         }
         static void RemoveWord()
         {
-            // io
-            // needs to update wordBank after deletions
+            while (true)
+            {
+                Console.Write("<<<\"done\"] Enter word to remove: ");
+
+                string delWord = Console.ReadLine();
+
+                string path = "../../../wordBank.txt";
+
+                // exit AddWord
+                if (delWord == "done")
+                {
+                    break;
+                }
+
+                else
+                {
+                    // read into program as arr
+                    // remove word
+                    // rewrite file
+                    string[] wordList = File.ReadAllLines(path);
+                    string[] newList = new string[wordList.Length - 1];
+
+                    int j = 0;
+                    for (int i = 0; i < wordList.Length; i++)
+                    {
+                        if (delWord != wordList[i]){
+                            newList[j] = wordList[i];
+                            j++;
+                        }
+                    }
+
+                    //rewrite file
+                    File.Delete(path);
+
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        for (int i = 0; i < newList.Length; i++)
+                        {
+                            sw.WriteLine(newList[i]);
+                        }
+                    }
+
+                    // and print the list with the new word
+                    Console.WriteLine("UPDATED WORD BANK:");
+                    using (StreamReader sr = File.OpenText(path))
+                    {
+                        string s;
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            Console.WriteLine(s);
+                        }
+                    }
+                }
+            }
             string[] wordBank = FileSetup();
             Home(wordBank);
         }
     }
 }
+
