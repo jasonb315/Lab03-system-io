@@ -9,8 +9,8 @@ namespace WordGuessGame
         {
             try
             {
-                FileSetup();
-                Home();
+                string[] wordBank = FileSetup();
+                Home(wordBank);
             }
             catch (Exception e)
             {
@@ -22,14 +22,18 @@ namespace WordGuessGame
                 Console.WriteLine("Goodbye!");
             }
         }
-        static void Home()
+        static void Home(string[] wordBank)
         {
             Console.WriteLine("315: HOME");
+            for (int i = 0; i < wordBank.Length; i++)
+            {
+                Console.WriteLine(wordBank[i]);
+            }
             // intro screen
             // user interface/selection
-                // CRUD words to file
+            // CRUD words to file
         }
-        static void FileSetup()
+        static string[] FileSetup()
         {
             Console.WriteLine("315: FILE SETUP");
             string path = "../../../MyTest.txt";
@@ -47,23 +51,12 @@ namespace WordGuessGame
                 }
             }
 
-            string[] words = System.IO.File.ReadAllLines(path);
-            for (int i = 0; i < words.Length; i++)
-            {
-                Console.WriteLine(words[i]);
-            }
+            string[] wordBank = File.ReadAllLines(path);
 
-            // read in file:
-            //using (StreamReader sr = File.OpenText(path))
-            //{
-            //    string s;
-            //    while ((s = sr.ReadLine()) != null)
-            //    {
-            //        Console.WriteLine(s);
-            //    }
-            //}
+            return wordBank;
 
         }
+
         static void Play()
         {
             // load words from file and select random
