@@ -11,6 +11,7 @@ namespace WordGuessGame
             try
             {
                 string[] wordBank = FileSetup();
+                Console.ForegroundColor = ConsoleColor.White;
                 Home(wordBank);
             }
             catch (Exception e)
@@ -94,13 +95,103 @@ namespace WordGuessGame
             return wordBank;
         }
 
+        static void ColorCode(int color)
+        {
+            if(color == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            if (color == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+            }
+            if (color == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            if (color == 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            if (color == 4)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+            }
+            if (color == 5)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+            }
+        }
+
         static void Play(string[]wordBank)
         {
+            
             Random rnd = new Random();
             int selectVal = rnd.Next(0, wordBank.Length -1);
-            Console.WriteLine("selectVal: " + selectVal);
             string secretWord = wordBank[selectVal];
-            Console.WriteLine(secretWord);
+
+            // compare data:
+            char[] charArray = secretWord.ToCharArray();
+            // console write data:
+            char[] dashLine = new char[charArray.Length];
+            //populate dashLine
+            
+            for (int i = 0; i < dashLine.Length; i++)
+            {
+                dashLine[i] = '_';
+            }
+
+            //string[] colorCode = new string[] { "Red", "Magenta", "Yellow", "Green", "Cyan", "Blue" };
+            int colorCounter = 0;
+
+            while (true)
+            {
+                for (int i = 0; i < dashLine.Length; i++)
+                {
+                    if (colorCounter == 6)
+                    {
+                        colorCounter = 0;
+
+                    }
+                    ColorCode(colorCounter);
+                    colorCounter++;
+                    Console.Write($"{ dashLine[i]} ");
+                }
+
+                Console.WriteLine();
+
+                Console.Write("Guess a letter: ");
+                string inputStr = Console.ReadLine();
+
+                if (inputStr.Length > 1)
+                {
+                    Console.WriteLine("Woah buddy, one at a time.");
+                }
+                else if (inputStr.Length == 1)
+                {
+
+                    // valid length
+                    // find and replace char in dashLine
+                    char character = char.Parse(inputStr);
+
+                    for (int i = 0; i < dashLine.Length; i++)
+                    {
+
+                        if (charArray[i] == character)
+                        {
+                            Console.WriteLine("ding!");
+                            dashLine[i] = character;
+                        }
+                    }
+                }
+
+
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.White;
+                
+            }
+
 
 
             Home(wordBank);
