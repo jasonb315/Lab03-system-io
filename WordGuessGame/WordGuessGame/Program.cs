@@ -47,15 +47,21 @@ namespace WordGuessGame
                 }
             }
 
-            // read in file:
-            using (StreamReader sr = File.OpenText(path))
+            string[] words = System.IO.File.ReadAllLines(path);
+            for (int i = 0; i < words.Length; i++)
             {
-                string s;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(s);
-                }
+                Console.WriteLine(words[i]);
             }
+
+            // read in file:
+            //using (StreamReader sr = File.OpenText(path))
+            //{
+            //    string s;
+            //    while ((s = sr.ReadLine()) != null)
+            //    {
+            //        Console.WriteLine(s);
+            //    }
+            //}
 
         }
         static void Play()
@@ -68,7 +74,16 @@ namespace WordGuessGame
         }
         static void ViewWords()
         {
-            // io
+            // read and print file
+            string path = "../../../MyTest.txt";
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+            }
         }
         static void AddWords()
         {
