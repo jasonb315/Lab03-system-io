@@ -24,14 +24,50 @@ namespace WordGuessGame
         }
         static void Home(string[] wordBank)
         {
-            Console.WriteLine("315: HOME");
-            for (int i = 0; i < wordBank.Length; i++)
+            // other cool thing for game intro here
+           
+            Console.WriteLine("1] PLAY");
+            Console.WriteLine("2] VIEW WORDS");
+            Console.WriteLine("3] ADD WORD");
+            Console.WriteLine("4] REMOVE WORD");
+            Console.WriteLine("5] EXIT");
+
+            while (true)
             {
-                Console.WriteLine(wordBank[i]);
+                string inputStr = Console.ReadLine();
+                int inputVal;
+                inputVal = Convert.ToInt32(inputStr);
+                if(inputVal == 1)
+                {
+                    Play();
+                }
+                else if (inputVal == 2)
+                {
+                    ViewWords();
+                }
+                else if (inputVal == 3)
+                {
+                    AddWord();
+                }
+                else if (inputVal == 4)
+                {
+                    RemoveWord();
+                }
+                else if (inputVal == 5)
+                {
+                    Console.WriteLine("Toodle-oo!");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("Excuse me what?");
+                }
+
             }
-            // intro screen
-            // user interface/selection
-            // CRUD words to file
+            //for (int i = 0; i < wordBank.Length; i++)
+            //{
+            //    Console.WriteLine(wordBank[i]);
+            //}
         }
         static string[] FileSetup()
         {
@@ -78,7 +114,7 @@ namespace WordGuessGame
                 }
             }
         }
-        static void AddWords()
+        static void AddWord()
         {
             // io
         }
