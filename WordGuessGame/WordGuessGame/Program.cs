@@ -5,6 +5,7 @@ namespace WordGuessGame
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             try
@@ -50,7 +51,7 @@ namespace WordGuessGame
 
             if(userSelect == 1)
             {
-                Play();
+                Play(wordBank);
             }
             else if (userSelect == 2)
             {
@@ -69,16 +70,11 @@ namespace WordGuessGame
                 Console.WriteLine("Toodle-oo!");
                 Environment.Exit(0);
             }
-
-            //for (int i = 0; i < wordBank.Length; i++)
-            //{
-            //    Console.WriteLine(wordBank[i]);
-            //}
         }
         static string[] FileSetup()
         {
             Console.WriteLine("315: FILE SETUP");
-            string path = "../../../MyTest.txt";
+            string path = "../../../wordBank.txt";
 
             // no file? create and populate with default bank:
             string[] defaultBank = new string[3] { "cocortical", "scrumptious", "bombastic" };
@@ -96,21 +92,22 @@ namespace WordGuessGame
             string[] wordBank = File.ReadAllLines(path);
 
             return wordBank;
-
         }
 
-        static void Play()
+        static void Play(string[]wordBank)
         {
-            // load words from file and select random
+            // select random from wordBank
             // while true loop guessing
             // track guesses
+
             // completion event!!
             // play again ? play : home/exit
+
         }
         static void ViewWords()
         {
             // read and print file
-            string path = "../../../MyTest.txt";
+            string path = "../../../wordBank.txt";
             using (StreamReader sr = File.OpenText(path))
             {
                 string s;
@@ -119,14 +116,55 @@ namespace WordGuessGame
                     Console.WriteLine(s);
                 }
             }
+
+            string[] wordBank = FileSetup();
+            Home(wordBank);
+
         }
         static void AddWord()
         {
-            // io
+            while (true)
+            {
+                Console.Write("Enter word ('done' to go back): ");
+                string newWord = Console.ReadLine();
+                string path = "../../../wordBank.txt";
+                
+                // exit AddWord
+                if (newWord == "done")
+                {
+                    break;
+                }
+
+                else
+                {
+                    // add the word
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(newWord);
+                    }
+
+                    // and print the list with the new word
+                    using (StreamReader sr = File.OpenText(path))
+                    {
+                        string s;
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            Console.WriteLine(s);
+                        }
+                    }
+                }
+            }
+
+            // load new wordBank to Home
+            string[] wordBank = FileSetup();
+            Home(wordBank);
         }
         static void RemoveWord()
         {
             // io
+            // needs to update wordBank after deletions
+            string[] wordBank = FileSetup();
+            Home(wordBank);
         }
     }
 }
