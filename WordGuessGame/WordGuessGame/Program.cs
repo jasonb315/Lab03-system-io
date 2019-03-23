@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace WordGuessGame
 {
@@ -103,7 +104,7 @@ namespace WordGuessGame
             string path = "../../../wordBank.txt";
 
             // no file? create and populate with default bank:
-            string[] defaultBank = new string[3] { "cocortical", "scrumptious", "bombastic" };
+            string[] defaultBank = new string[1] { "dog" };
             if (!File.Exists(path))
             {
                 using (StreamWriter sw = File.CreateText(path))
@@ -145,6 +146,35 @@ namespace WordGuessGame
             if (color == 5)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
+            }
+        }
+
+        static void WinBling()
+        {
+            string[] winner = new string[] {"W","I","N","N","E","R"};
+            int colorCounter = 0;
+
+            for (int i = 0; i < 100; i++)
+            {
+                // 100 rainbow
+                colorCounter++;
+
+                for (int j = 0; j < 6; j++)
+                {
+                    if (colorCounter == 6)
+                    {
+                        colorCounter = 0;
+                    }
+                    ColorCode(colorCounter);
+                    colorCounter++;
+                    Console.Write(winner[j]);
+                }
+
+                
+                Console.WriteLine();
+
+                int milliseconds = 50;
+                Thread.Sleep(milliseconds);
             }
         }
 
@@ -250,7 +280,7 @@ namespace WordGuessGame
                         }
                         Console.WriteLine();
                         Console.ReadLine();
-                        // some cool thing when you win
+                        WinBling();
                         Console.Clear();
                     }
                 }
