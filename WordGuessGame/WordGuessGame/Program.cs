@@ -343,6 +343,7 @@ namespace WordGuessGame
             }
 
             string[] wordBank = FileSetup();
+            Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
             Home(wordBank);
 

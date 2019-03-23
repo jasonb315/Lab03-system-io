@@ -1,4 +1,4 @@
-# ATM CLI
+# WordGuessingGame
 #### Lab03-system-io
 ##### *Author: Jason Burns*
 
@@ -29,9 +29,15 @@ Then select and open ```AboutMe.sln```
 ## Visuals
 
 ##### Application Start
-<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/start.JPG) <br> -->
-##### Using and ending the Application
-<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/use.JPG) <br> -->
+<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/home.JPG) <br> -->
+##### Word List
+<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/words.JPG) <br> -->
+##### In Game
+<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/guessing.JPG) <br> -->
+##### Good Guess!
+<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/gotit.JPG) <br> -->
+##### Win Screen
+<!-- ![Capture](https://github.com/jasonb315/Lab03-system-io/blob/master/assets/win.JPG) <br> -->
 
 
 ------------------------------
