@@ -10,6 +10,7 @@ namespace WordGuessGame
 
         static void Main(string[] args)
         {
+                      
             try
             {
                 string[] wordBank = FileSetup();
@@ -27,7 +28,7 @@ namespace WordGuessGame
             }
             finally
             {
-                Console.WriteLine("Goodbye!");
+                Console.WriteLine("Buhbye!");
             }
         }
         static void Home(string[] wordBank)
@@ -35,6 +36,14 @@ namespace WordGuessGame
             // other cool thing for game intro here
 
             Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Gray;
+            string appName = "WordGuessingGame";
+            string appVersion = "1.0.0";
+            string appAuthor = "Jason Burns";
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+
+            Console.ForegroundColor = ConsoleColor.White;
             string title = @"
                                      ,---,            
          .---.   ,---.    __  ,-.  ,---.'|            
@@ -177,6 +186,9 @@ namespace WordGuessGame
                 
                 Thread.Sleep(milliseconds);
             }
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Press any key to continue ...");
             Console.ReadLine();
         }
 
@@ -242,7 +254,7 @@ namespace WordGuessGame
                 Console.Write("Guesses made: [");
                 foreach(var letter in guessed)
                 {
-                    Console.Write(letter);
+                    Console.Write($"{letter} ");
                 }
                 Console.Write("]");
                 Console.WriteLine();
