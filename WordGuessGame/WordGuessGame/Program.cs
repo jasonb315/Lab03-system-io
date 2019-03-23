@@ -13,6 +13,10 @@ namespace WordGuessGame
             {
                 string[] wordBank = FileSetup();
                 Console.ForegroundColor = ConsoleColor.White;
+
+
+                Console.WriteLine();
+
                 Home(wordBank);
             }
             catch (Exception e)
@@ -28,7 +32,27 @@ namespace WordGuessGame
         static void Home(string[] wordBank)
         {
             // other cool thing for game intro here
-           
+
+            Console.WriteLine();
+            string title = @"
+                                     ,---,            
+         .---.   ,---.    __  ,-.  ,---.'|            
+        /. ./|  '   ,'\ ,' ,'/ /|  |   | :  .--.--.   
+     .-'-. ' | /   /   |'  | |' |  |   | | /  /    '  
+    /___/ \: |.   ; ,. :|  |   ,',--.__| ||  :  /`./  
+ .-'.. '   ' .'   | |: :'  :  / /   ,'   ||  :  ;_    
+/___/ \:     ''   | .; :|  | ' .   '  /  | \  \    `. 
+.   \  ' .\   |   :    |;  : | '   ; |:  |  `----.   \
+ \   \   ' \ | \   \  / |  , ; |   | '/  ' /  /`--'  /
+  \   \  |--'   `----'   ---' |   :    :| '--'.     /
+   \   \ |                      \   \  /    `--`---`
+    '---'                        `----'
+
+                ";
+            Console.Write(title);
+
+            Console.WriteLine();
+
             Console.WriteLine("1] PLAY");
             Console.WriteLine("2] VIEW WORDS");
             Console.WriteLine("3] ADD WORD");
@@ -75,7 +99,7 @@ namespace WordGuessGame
         }
         static string[] FileSetup()
         {
-            Console.WriteLine("315: FILE SETUP");
+            Console.WriteLine();
             string path = "../../../wordBank.txt";
 
             // no file? create and populate with default bank:
@@ -126,7 +150,7 @@ namespace WordGuessGame
 
         static void Play(string[]wordBank)
         {
-            
+            Console.Clear();
             Random rnd = new Random();
             int selectVal = rnd.Next(0, wordBank.Length -1);
             string secretWord = wordBank[selectVal];
@@ -225,10 +249,11 @@ namespace WordGuessGame
                             Console.Write($"{ dashLine[i]} ");
                         }
                         Console.WriteLine();
+                        Console.ReadLine();
+                        // some cool thing when you win
+                        Console.Clear();
                     }
                 }
-
-
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.White;
             }
