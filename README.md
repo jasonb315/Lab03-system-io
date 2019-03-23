@@ -6,7 +6,7 @@
 
 ## Description
 
-This is my TOTALLY SICK CLI word guessing game!!! With raindbows!!!
+This is my TOTALLY SICK CLI word guessing game!!! With rainbows!!!
 
 It's fun! From the home screen you can look a the word list *be cool don't cheat*
 
