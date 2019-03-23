@@ -30,7 +30,7 @@ Next navigate to the location you cloned the Repository.
 
 Double click on the ```Lab02-Unit-Testing``` directory.
 
-Then select and open ```AboutMe.sln```
+Then select and open ```WordGuessGame.sln```
 
 ------------------------------
 
