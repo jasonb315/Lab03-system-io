@@ -34,7 +34,7 @@ namespace WordGuessGame
         {
             // other cool thing for game intro here
 
-            Console.WriteLine();
+            Console.Clear();
             string title = @"
                                      ,---,            
          .---.   ,---.    __  ,-.  ,---.'|            
@@ -151,15 +151,16 @@ namespace WordGuessGame
 
         static void WinBling()
         {
-            string[] winner = new string[] {"W","I","N","N","E","R"};
+            string winner = "WINNER";
+
             int colorCounter = 0;
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 6; i++)
             {
-                // 100 rainbow
+                
                 colorCounter++;
 
-                for (int j = 0; j < 6; j++)
+                foreach(var letter in winner)
                 {
                     if (colorCounter == 6)
                     {
@@ -167,20 +168,41 @@ namespace WordGuessGame
                     }
                     ColorCode(colorCounter);
                     colorCounter++;
-                    Console.Write(winner[j]);
-                }
+                    Console.Write($"{letter} ");
 
-                
+                }
                 Console.WriteLine();
 
-                int milliseconds = 50;
+                Console.WriteLine();
+
+                int milliseconds = 300;
                 Thread.Sleep(milliseconds);
             }
+            Console.ReadLine();
+
         }
 
         static void Play(string[]wordBank)
         {
             Console.Clear();
+
+            Console.WriteLine();
+            string guessPrompt = "GUESS THE WORD";
+            for (int i = 0; i < guessPrompt.Length; i++)
+            {
+                int printWait = 100;
+                Thread.Sleep(printWait);
+                Console.Write(guessPrompt[i]);
+            }
+
+           
+            Console.WriteLine();
+
+            int startWait = 500;
+            Thread.Sleep(startWait);
+
+            Console.Clear();
+
             Random rnd = new Random();
             int selectVal = rnd.Next(0, wordBank.Length -1);
             string secretWord = wordBank[selectVal];
@@ -198,12 +220,13 @@ namespace WordGuessGame
                 dashLine[i] = '_';
             }
 
-            //string[] colorCode = new string[] { "Red", "Magenta", "Yellow", "Green", "Cyan", "Blue" };
             int colorCounter = 0;
 
             bool playing = true;
             while (playing)
             {
+                Console.Clear();
+                Console.WriteLine();
                 for (int i = 0; i < dashLine.Length; i++)
                 {
                     if (colorCounter == 6)
@@ -265,7 +288,8 @@ namespace WordGuessGame
                     // endgame redout of word
                     if (!playing)
                     {
-
+                        Console.Clear();
+                        Console.WriteLine();
                         Console.WriteLine("You got it!");
                         Console.ForegroundColor = ConsoleColor.White;
                         for (int i = 0; i < dashLine.Length; i++)
@@ -282,6 +306,7 @@ namespace WordGuessGame
                         Console.ReadLine();
                         WinBling();
                         Console.Clear();
+
                     }
                 }
                 Console.WriteLine();
@@ -308,6 +333,7 @@ namespace WordGuessGame
             }
 
             string[] wordBank = FileSetup();
+            Console.ReadLine();
             Home(wordBank);
 
         }
