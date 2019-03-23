@@ -6,7 +6,15 @@
 
 ## Description
 
-This is a C# console application that allows you to perform CRUD actions on a text file to facilitate a guessing game.
+This is my TOTALLY SICK CLI word guessing game!!! With raindbows!!!
+
+It's fun! From the home screen you can look a the word list *be cool don't cheat*
+
+and also add/delete words.
+
+The words are saved to a text file at root next to the Program file.
+
+Try it out!! :D
 
 ------------------------------
 
@@ -43,4 +51,4 @@ Then select and open ```AboutMe.sln```
 
 ## Change Log
 
-1.0: *Initial publish*
+1.0: 22MAR2019 *Initial publish*
