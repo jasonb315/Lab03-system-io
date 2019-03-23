@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace WordGuessGame
@@ -130,6 +131,8 @@ namespace WordGuessGame
             int selectVal = rnd.Next(0, wordBank.Length -1);
             string secretWord = wordBank[selectVal];
 
+            // guess list
+            List<string> guessed = new List<string>();
             // compare data:
             char[] charArray = secretWord.ToCharArray();
             // console write data:
@@ -144,14 +147,14 @@ namespace WordGuessGame
             //string[] colorCode = new string[] { "Red", "Magenta", "Yellow", "Green", "Cyan", "Blue" };
             int colorCounter = 0;
 
-            while (true)
+            bool playing = true;
+            while (playing)
             {
                 for (int i = 0; i < dashLine.Length; i++)
                 {
                     if (colorCounter == 6)
                     {
                         colorCounter = 0;
-
                     }
                     ColorCode(colorCounter);
                     colorCounter++;
@@ -159,17 +162,28 @@ namespace WordGuessGame
                 }
 
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Write("Guesses made: [");
+                foreach(var letter in guessed)
+                {
+                    Console.Write(letter);
+                }
+                Console.Write("]");
+                Console.WriteLine();
+
 
                 Console.Write("Guess a letter: ");
                 string inputStr = Console.ReadLine();
 
                 if (inputStr.Length > 1)
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Woah buddy, one at a time.");
                 }
                 else if (inputStr.Length == 1)
                 {
-
+                    guessed.Add(inputStr);
                     // valid length
                     // find and replace char in dashLine
                     char character = char.Parse(inputStr);
@@ -183,13 +197,40 @@ namespace WordGuessGame
                             dashLine[i] = character;
                         }
                     }
+
+                    //check for completion
+                    for (int i = 0; i < dashLine.Length; i++)
+                    {
+                        string s = new string(dashLine);
+                        if (!s.Contains('_'))
+                        {
+                            playing = false;
+                            
+                        }
+                    }
+                    // endgame redout of word
+                    if (!playing)
+                    {
+
+                        Console.WriteLine("You got it!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        for (int i = 0; i < dashLine.Length; i++)
+                        {
+                            if (colorCounter == 6)
+                            {
+                                colorCounter = 0;
+                            }
+                            ColorCode(colorCounter);
+                            colorCounter++;
+                            Console.Write($"{ dashLine[i]} ");
+                        }
+                        Console.WriteLine();
+                    }
                 }
 
 
                 Console.WriteLine();
-
                 Console.ForegroundColor = ConsoleColor.White;
-                
             }
 
 
@@ -199,6 +240,7 @@ namespace WordGuessGame
         }
         static void ViewWords()
         {
+            Console.WriteLine("WORD BANK:");
             // read and print file
             string path = "../../../wordBank.txt";
             using (StreamReader sr = File.OpenText(path))
