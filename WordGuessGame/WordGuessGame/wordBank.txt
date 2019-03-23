@@ -1,8 +1,11 @@
 mastermind
-mermaid
 bombalicious
 wubbalubbadubdub
 superbad
 radical
 tubular
-groovy
+mermaid
+monster
+3.14159
+krunk
+beesknees

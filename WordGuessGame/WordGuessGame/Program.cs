@@ -94,7 +94,9 @@ namespace WordGuessGame
             }
             else if (userSelect == 5)
             {
+                Console.WriteLine();
                 Console.WriteLine("Toodle-oo!");
+                Console.WriteLine();
                 Environment.Exit(0);
             }
         }
@@ -151,35 +153,31 @@ namespace WordGuessGame
 
         static void WinBling()
         {
-            string winner = "WINNER";
+            Console.Clear();
+            string title = @"
+ _ _ _  _  _ _  _ _  ___  ___ 
+| | | || || \ || \ || __>| . \
+| | | || ||   ||   || _> |   /
+|__/_/ |_||_\_||_\_||___>|_\_\
+                ";
 
             int colorCounter = 0;
+            int milliseconds = 400;
 
             for (int i = 0; i < 6; i++)
             {
-                
-                colorCounter++;
-
-                foreach(var letter in winner)
+                Console.Clear();
+                if (colorCounter == 6)
                 {
-                    if (colorCounter == 6)
-                    {
-                        colorCounter = 0;
-                    }
-                    ColorCode(colorCounter);
-                    colorCounter++;
-                    Console.Write($"{letter} ");
-
+                    colorCounter = 0;
                 }
-                Console.WriteLine();
-
-                Console.WriteLine();
-
-                int milliseconds = 300;
+                ColorCode(colorCounter);
+                colorCounter++;
+                Console.Write(title);
+                
                 Thread.Sleep(milliseconds);
             }
             Console.ReadLine();
-
         }
 
         static void Play(string[]wordBank)
@@ -339,13 +337,23 @@ namespace WordGuessGame
         }
         static void AddWord()
         {
+            Console.WriteLine("WORD BANK:");
+            // read and print file
+            string path = "../../../wordBank.txt";
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+
             while (true)
             {
                 Console.Write("<<<\"done\"] Enter word to add: ");
 
                 string newWord = Console.ReadLine();
-
-                string path = "../../../wordBank.txt";
                 
                 // exit AddWord
                 if (newWord == "done")
@@ -380,13 +388,24 @@ namespace WordGuessGame
         }
         static void RemoveWord()
         {
+            Console.WriteLine("WORD BANK:");
+            // read and print file
+            string path = "../../../wordBank.txt";
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+
             while (true)
             {
                 Console.Write("<<<\"done\"] Enter word to remove: ");
 
                 string delWord = Console.ReadLine();
 
-                string path = "../../../wordBank.txt";
 
                 // exit AddWord
                 if (delWord == "done")
@@ -396,9 +415,6 @@ namespace WordGuessGame
 
                 else
                 {
-                    // read into program as arr
-                    // remove word
-                    // rewrite file
                     string[] wordList = File.ReadAllLines(path);
                     string[] newList = new string[wordList.Length - 1];
 
