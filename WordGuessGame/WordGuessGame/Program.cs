@@ -31,9 +31,13 @@ namespace WordGuessGame
                 Console.WriteLine("Buhbye!");
             }
         }
+
+        /// <summary>
+        ///     Takes user input, runs appropriate game functions
+        /// </summary>
+        /// <param name="wordBank">string wordBank</param>
         static void Home(string[] wordBank)
         {
-            // other cool thing for game intro here
 
             Console.Clear();
 
@@ -109,6 +113,11 @@ namespace WordGuessGame
                 Environment.Exit(0);
             }
         }
+
+        /// <summary>
+        ///     Checkfor/writes txt file
+        /// </summary>
+        /// <returns></returns>
         static string[] FileSetup()
         {
             Console.WriteLine();
@@ -132,6 +141,10 @@ namespace WordGuessGame
             return wordBank;
         }
 
+        /// <summary>
+        ///     Console color programatic change
+        /// </summary>
+        /// <param name="color"></param>
         static void ColorCode(int color)
         {
             if(color == 0)
@@ -160,6 +173,9 @@ namespace WordGuessGame
             }
         }
 
+        /// <summary>
+        ///     Rainbow win screen
+        /// </summary>
         static void WinBling()
         {
             Console.Clear();
@@ -192,6 +208,10 @@ namespace WordGuessGame
             Console.ReadLine();
         }
 
+        /// <summary>
+        ///     Core game method. User loop until win.
+        /// </summary>
+        /// <param name="wordBank">string wordBank</param>
         static void Play(string[]wordBank)
         {
             Console.Clear();
@@ -267,6 +287,7 @@ namespace WordGuessGame
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Woah buddy, one at a time.");
+                    Thread.Sleep(1000);
                 }
                 else if (inputStr.Length == 1)
                 {
@@ -328,6 +349,10 @@ namespace WordGuessGame
             Home(wordBank);
 
         }
+
+        /// <summary>
+        ///     Pring word list from file.
+        /// </summary>
         static void ViewWords()
         {
             Console.WriteLine("WORD BANK:");
@@ -348,6 +373,10 @@ namespace WordGuessGame
             Home(wordBank);
 
         }
+
+        /// <summary>
+        ///     Promt a user for word and add to file.
+        /// </summary>
         static void AddWord()
         {
             Console.WriteLine("WORD BANK:");
@@ -399,6 +428,10 @@ namespace WordGuessGame
             string[] wordBank = FileSetup();
             Home(wordBank);
         }
+
+        /// <summary>
+        ///     Prompt a user for word to remove.
+        /// </summary>
         static void RemoveWord()
         {
             Console.WriteLine("WORD BANK:");
