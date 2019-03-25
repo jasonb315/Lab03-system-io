@@ -52,3 +52,4 @@ Then select and open ```WordGuessGame.sln```
 ## Change Log
 
 1.0: 22MAR2019 *Initial publish*
+1.1: 25MAR2019 *Summary strings added*
